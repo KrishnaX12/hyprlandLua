@@ -1,0 +1,33 @@
+* {
+    background-color: transparent;
+    text-color: #cdd6f4;
+    border: 0;
+    font: "JetBrainsMono Nerd Font 12";
+}
+
+window {
+    background-color: transparent;
+    width: 35%;
+}
+
+inputbar {
+    background-color: transparent;
+    padding: 6px;
+}
+
+listview {
+    background-color: transparent;
+    spacing: 2px;
+}
+
+element {
+    background-color: transparent;
+    padding: 4px 6px;
+}
+
+/* 👇 VERY SUBTLE selection highlight */
+element selected {
+    background-color: rgba(137, 180, 250, 0.12);
+    text-color: #89b4fa;
+    border-radius: 8px;
+}

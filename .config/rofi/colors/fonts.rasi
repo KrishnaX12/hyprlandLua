@@ -1,0 +1,4 @@
+* {
+    font: "Iosevka Nerd Font 10";
+    foreground:  rgb(45, 35, 44);
+}

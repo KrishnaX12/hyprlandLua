@@ -1,0 +1,58 @@
+ @import "colors/gruv-material.css";
+
+ * {
+     all: unset;
+     font-family: "Iosevka Nerd Font Propo", monospace;
+ }
+
+window#waybar {
+    background: transparent;
+}
+
+#waybar > box {
+    background-color: @bg0;
+    border-radius: 0 0 14px 14px;
+}
+
+ #workspaces {
+     min-width: 100px;
+     font-size: 0.4rem;
+     padding: 2px 4px;
+     margin: 11px 0;
+     border-radius: 99px;
+ }
+
+ #workspaces button {
+     background-color: @bg4;
+     color: transparent;
+     padding: 0px 5px;
+     border-radius: 99px;
+     margin: 0 2px;
+     min-width: 4px;
+ }
+
+ #workspaces button.active {
+     background-color: @blue;
+     min-width: 1.4rem;
+ }
+
+ #clock,
+ #clock#right {
+    margin: 0 15px;
+    font-weight: 700;
+    font-size: 1.12rem;
+ }
+
+ .modules-left{
+    margin-left: 12px;
+ }
+
+ .modules-right{
+    margin-right: 12px;
+ }
+
+ #cava{
+    margin: 0 12px;
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+ }
