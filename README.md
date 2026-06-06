@@ -1,4 +1,3 @@
-## hyprlandLua
 # HyprlandLua
 
 * A minimal and modular **Lua-powered Hyprland setup** for Arch Linux featuring Waybar, Rofi, Kitty, Cava, screenshot utilities, and a clean Gruvbox Material-inspired theme.
