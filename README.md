@@ -159,5 +159,3 @@ exec Hyprland
 * Gruvbox Material themed UI.
 * Feel free to fork, modify, and improve.
 * Always back up your existing configuration before installation.
-
----
