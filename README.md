@@ -161,7 +161,3 @@ exec Hyprland
 * Always back up your existing configuration before installation.
 
 ---
-
-## License
-
-MIT License
