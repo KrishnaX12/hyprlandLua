@@ -22,6 +22,7 @@ hl.bind(mainMod .. " + I", hl.dsp.exec_cmd("idea"))
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))    -- dwindle only
 hl.bind("Print", hl.dsp.exec_cmd(".config/screenshot/screenshot-script.sh"))
 hl.bind(mainMod .. " + Print", hl.dsp.exec_cmd(".config/screenshot/screenshot-script.sh  area"))
+hl.bind(mainMod .. " + A", hl.dsp.exec_cmd("cliphist list | rofi -dmenu -i -p Clipboard -theme ~/.config/rofi/clipboard.rasi | cliphist decode | wl-copy"))
 hl.bind("SUPER + L", function()
     hl.exec_cmd("hyprlock")
 end)
