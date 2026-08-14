@@ -9,7 +9,6 @@ local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 -- Example binds, see https://wiki.hypr.land/Configuring/Basics/Binds/ for more
 hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd(terminal))
 local closeWindowBind = hl.bind(mainMod .. " + C", hl.dsp.window.close())
--- closeWindowBind:set_enabled(false)
 hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + F", hl.dsp.exec_cmd("firefox"))
@@ -23,7 +22,6 @@ hl.bind(mainMod .. " + I", hl.dsp.exec_cmd("idea"))
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))    -- dwindle only
 hl.bind("Print", hl.dsp.exec_cmd(".config/screenshot/screenshot-script.sh"))
 hl.bind(mainMod .. " + Print", hl.dsp.exec_cmd(".config/screenshot/screenshot-script.sh  area"))
-hl.bind(mainMod .. " + A", hl.dsp.exec_cmd("cliphist list | rofi -dmenu -i -p Clipboard -theme ~/.config/rofi/clipboard.rasi | cliphist decode | wl-copy"))
 hl.bind("SUPER + L", function()
     hl.exec_cmd("hyprlock")
 end)
