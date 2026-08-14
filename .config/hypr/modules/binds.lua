@@ -19,7 +19,6 @@ hl.bind(mainMod .. " + R", hl.dsp.exec_cmd("~/.config/waybar/scripts/launch.sh")
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo()) 
 hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("kitty -e nmtui"))
 hl.bind(mainMod .. " + B",hl.dsp.exec_cmd("blueman-manager"))
-hl.bind(mainMod .. " + I", hl.dsp.exec_cmd("idea"))
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))    -- dwindle only
 hl.bind("Print", hl.dsp.exec_cmd(".config/screenshot/screenshot-script.sh"))
 hl.bind(mainMod .. " + Print", hl.dsp.exec_cmd(".config/screenshot/screenshot-script.sh  area"))
@@ -70,8 +69,13 @@ hl.bind("XF86AudioPrev",  hl.dsp.exec_cmd("playerctl previous"),   { locked = tr
 
 --Wallpaper 
 
-for i = 1, 9 do
-    hl.bind("ALT + " .. i, hl.dsp.exec_cmd("awww img ~/.config/wallpaper/pic" .. i .. ".png"))
-end
-
-hl.bind("ALT + 0", hl.dsp.exec_cmd('awww img "$(find ~/.config/wallpaper -type f | shuf -n 1)"'))
+hl.bind("ALT + 1", hl.dsp.exec_cmd("awww img ~/Downloads/pic1.png"))
+hl.bind("ALT + 2", hl.dsp.exec_cmd("awww img ~/Downloads/pic2.png"))
+hl.bind("ALT + 3", hl.dsp.exec_cmd("awww img ~/Downloads/pic3.png"))
+hl.bind("ALT + 4", hl.dsp.exec_cmd("awww img ~/Downloads/pic4.png"))
+hl.bind("ALT + 5", hl.dsp.exec_cmd("awww img ~/Downloads/pic5.jpg"))
+hl.bind("ALT + 6", hl.dsp.exec_cmd("awww img ~/Downloads/bleachCover.jpg"))
+hl.bind("ALT + 7", hl.dsp.exec_cmd("awww img ~/Downloads/deathnote.jpg"))
+hl.bind("ALT + 8", hl.dsp.exec_cmd("awww img ~/Downloads/itachiLight.png"))
+hl.bind("ALT + 9", hl.dsp.exec_cmd("awww img ~/Downloads/1371018.png"))
+hl.bind("ALT + 0", hl.dsp.exec_cmd("awww img ~/Downloads/jjk.jpg"))
