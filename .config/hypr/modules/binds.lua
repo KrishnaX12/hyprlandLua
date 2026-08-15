@@ -9,6 +9,7 @@ local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 -- Example binds, see https://wiki.hypr.land/Configuring/Basics/Binds/ for more
 hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd(terminal))
 local closeWindowBind = hl.bind(mainMod .. " + C", hl.dsp.window.close())
+-- closeWindowBind:set_enabled(false)
 hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + F", hl.dsp.exec_cmd("firefox"))
@@ -18,6 +19,7 @@ hl.bind(mainMod .. " + R", hl.dsp.exec_cmd("~/.config/waybar/scripts/launch.sh")
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo()) 
 hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("kitty -e nmtui"))
 hl.bind(mainMod .. " + B",hl.dsp.exec_cmd("blueman-manager"))
+hl.bind(mainMod .. " + I", hl.dsp.exec_cmd("idea"))
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))    -- dwindle only
 hl.bind("Print", hl.dsp.exec_cmd(".config/screenshot/screenshot-script.sh"))
 hl.bind(mainMod .. " + Print", hl.dsp.exec_cmd(".config/screenshot/screenshot-script.sh  area"))
@@ -65,3 +67,11 @@ hl.bind("XF86AudioNext",  hl.dsp.exec_cmd("playerctl next"),       { locked = tr
 hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
 hl.bind("XF86AudioPlay",  hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
 hl.bind("XF86AudioPrev",  hl.dsp.exec_cmd("playerctl previous"),   { locked = true })
+
+--Wallpaper 
+
+for i = 1, 9 do
+    hl.bind("ALT + " .. i, hl.dsp.exec_cmd("awww img ~/.config/wallpaper/pic" .. i .. ".png"))
+end
+
+hl.bind("ALT + 0", hl.dsp.exec_cmd('awww img "$(find ~/.config/wallpaper -type f | shuf -n 1)"'))
