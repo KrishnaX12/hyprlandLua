@@ -1,4 +1,3 @@
-```markdown
 # HyprlandLua 🌙
 
 A minimal, highly modular, **Lua-powered Hyprland setup** for Arch Linux. Featuring Waybar, Rofi, Kitty, Cava, screenshot utilities, and a beautifully clean Gruvbox Material-inspired theme.
@@ -74,8 +73,6 @@ hyprlandLua/
         └── style.css
 ```
 
----
-
 ## 🗺️ File Locations
 
 | Component | Path |
@@ -143,4 +140,3 @@ hyprctl reload
 
 * Built and tested heavily on Arch Linux.
 * Feel free to fork, modify, and improve. If you add cool new Lua modules, pull requests are welcome!
-```
