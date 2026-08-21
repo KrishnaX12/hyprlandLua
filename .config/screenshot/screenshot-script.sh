@@ -1,15 +1,28 @@
 #!/bin/bash
 
+# Prevent multiple slurp selection overlays from stacking
+if pgrep -x "slurp" > /dev/null; then
+    exit 0
+fi
+
 DIR="$HOME/Pictures/Screenshots"
 mkdir -p "$DIR"
 
 TIME=$(date +%Y-%m-%d_%H-%M-%S)
 
-# If argument is "area", use slurp
 if [ "$1" = "area" ]; then
-    grim -g "$(slurp)" "$DIR/area_$TIME.png"
+    # Grab area geometry; if user cancels (Esc), exit cleanly
+    GEOM=$(slurp) || exit 0
+    FILE="$DIR/area_$TIME.png"
+    grim -g "$GEOM" "$FILE" || exit 1
 else
-    grim "$DIR/full_$TIME.png"
+    FILE="$DIR/full_$TIME.png"
+    grim "$FILE" || exit 1
 fi
 
-wl-copy < "$FILE"
+# Copy image to clipboard if file exists
+if [ -f "$FILE" ]; then
+    wl-copy < "$FILE"
+    # Optional notification:
+    command -v notify-send >/dev/null && notify-send -i "$FILE" "Screenshot Saved" "$(basename "$FILE") copied to clipboard"
+fi
