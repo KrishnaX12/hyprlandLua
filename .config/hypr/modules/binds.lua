@@ -2,15 +2,14 @@
 ---- KEYBINDINGS ----
 ---------------------
 
-
-local menu = "/home/krishna/.config/rofi/scripts/launcher.sh"
+local menu = os.getenv("HOME") .. "/.config/rofi/scripts/launcher.sh"
 local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 
 -- Example binds, see https://wiki.hypr.land/Configuring/Basics/Binds/ for more
 hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd(terminal))
 local closeWindowBind = hl.bind(mainMod .. " + C", hl.dsp.window.close())
 -- closeWindowBind:set_enabled(false)
-hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
+hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch exit"))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + F", hl.dsp.exec_cmd("firefox"))
 hl.bind(mainMod .. " + SPACE", hl.dsp.exec_cmd(menu))
@@ -18,11 +17,11 @@ hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd("~/.config/waybar/scripts/launch.sh"))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo()) 
 hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("kitty -e nmtui"))
-hl.bind(mainMod .. " + B",hl.dsp.exec_cmd("blueman-manager"))
+hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("blueman-manager"))
 hl.bind(mainMod .. " + I", hl.dsp.exec_cmd("idea"))
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))    -- dwindle only
-hl.bind("Print", hl.dsp.exec_cmd(".config/screenshot/screenshot-script.sh"))
-hl.bind(mainMod .. " + Print", hl.dsp.exec_cmd(".config/screenshot/screenshot-script.sh  area"))
+hl.bind("Print", hl.dsp.exec_cmd("~/.config/screenshot/screenshot-script.sh"))
+hl.bind(mainMod .. " + Print", hl.dsp.exec_cmd("~/.config/screenshot/screenshot-script.sh area"))
 hl.bind(mainMod .. " + A", hl.dsp.exec_cmd("cliphist list | rofi -dmenu -i -p Clipboard -theme ~/.config/rofi/clipboard.rasi | cliphist decode | wl-copy"))
 hl.bind("SUPER + L", function()
     hl.exec_cmd("hyprlock")
