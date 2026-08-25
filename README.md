@@ -9,6 +9,18 @@ A minimal, highly modular, **Lua-powered Hyprland setup** for Arch Linux. Featur
 
 ---
 
+## 📸 Showcase
+
+| 🌿 Clean Desktop | ⚡ Terminal & Fastfetch |
+| :---: | :---: |
+| ![Clean Desktop](https://github.com/user-attachments/assets/017943ef-4acd-41e3-aed0-8f850e38ecf3) | ![Fastfetch](https://github.com/user-attachments/assets/60e466de-c1fc-438e-b0fa-f6422e218699) |
+
+| 🚀 App Launcher (Rofi) | 🔒 Lockscreen (Hyprlock) |
+| :---: | :---: |
+| ![Rofi Launcher](https://github.com/user-attachments/assets/23e7700d-0ca2-4a59-b5c9-b09237c23159) | ![Hyprlock](https://github.com/user-attachments/assets/a6ef470e-c394-4da2-bf61-685e8af15ea2) |
+
+---
+
 ## ✨ Features
 
 * **100% Lua-Based:** Hyprland configured entirely through Lua for ultimate scriptability.
