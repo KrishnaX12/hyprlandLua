@@ -12,7 +12,7 @@
     ],
     "modules-right": [
         "cava",
-        "battery"
+        "custom/battery"
     ],
     "clock": {
         "format": "{:%I}",
@@ -36,10 +36,11 @@
             "10": ""
         }
     },
-    "battery": {
-        "bat": "BAT0",
-        "interval": 60,
-        "format": "{capacity}% {icon}",
+    "custom/battery": {
+        "exec": "sh -c 'if [ -f /sys/class/power_supply/BAT0/capacity ]; then c=$(cat /sys/class/power_supply/BAT0/capacity); else e=$(cat /sys/class/power_supply/BAT0/energy_now 2>/dev/null || echo 0); c=$(( e / 410400 )); fi; s=$(cat /sys/class/power_supply/BAT0/status 2>/dev/null || echo Unknown); alt=$(echo \"$s\" | tr \"[:upper:]\" \"[:lower:]\"); printf \"{\\\"percentage\\\": %d, \\\"alt\\\": \\\"%s\\\", \\\"tooltip\\\": \\\"%s: %d%%\\\"}\\n\" \"$c\" \"$alt\" \"$s\" \"$c\"'",
+        "return-type": "json",
+        "interval": 5,
+        "format": "{percentage}% {icon}",
         "format-icons": {
             "default": [
                 "󰂎",
