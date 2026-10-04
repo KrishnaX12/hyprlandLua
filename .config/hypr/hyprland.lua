@@ -5,7 +5,8 @@
 -- Set programs that you use
 terminal    = "kitty"
 fileManager = "nautilus"
-menu        = "~/.config/rofi/scripts/launcher.sh"
+menu        = os.getenv("HOME") .. "/.config/rofi/scripts/launcher.sh"
+
 
 require("modules.monitors")
 require("modules.binds")
@@ -16,3 +17,4 @@ require("modules.layout")
 require("modules.misc")
 require("modules.input")
 require("modules.windowrules")
+
