@@ -14,6 +14,5 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("wl-paste --watch cliphist store &")
 
     -- Fix OBS screen capture (PipeWire portal must start AFTER Hyprland is ready)
-    -- hl.exec_cmd("sleep 2 && systemctl --user restart xdg-desktop-portal-hyprland && systemctl --user restart xdg-desktop-portal")
-    -- u can have this if u have obs
+    hl.exec_cmd("sleep 2 && systemctl --user restart xdg-desktop-portal-hyprland && systemctl --user restart xdg-desktop-portal")
 end)
