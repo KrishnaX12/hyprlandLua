@@ -26,6 +26,7 @@ A minimal, highly modular, **Lua-powered Hyprland setup** for Arch Linux. Featur
 ## ✨ Features
 
 * **100% Lua-Based:** Hyprland configured entirely through Lua for ultimate scriptability.
+* **Window Controls:** Pin floating windows across workspaces and organize apps into tabbed groups.
 * **Modular Structure:** Clean, separated configuration modules that are easy to read and maintain.
 * **Neutral Theme:** Charcoal surfaces, soft white text, and gray accents across Rofi, Waybar, Hyprlock, and window borders.
 * **Cava Integration:** Audio visualizer with multiple custom GLSL shaders (Spectrogram, Northern Lights, Orion, Winamp-style) and color themes.
@@ -187,6 +188,23 @@ hyprctl reload
 Reloading does not rerun the `hyprland.start` handler.
 
 ---
+
+## Window Pinning and Groups
+
+| Shortcut | Action |
+| :--- | :--- |
+| `SUPER + P` | Make the focused window floating and toggle pinning across workspaces |
+| `SUPER + V` | Toggle floating / tiling |
+| `SUPER + G` | Create or dissolve a tabbed group |
+| `SUPER + Tab` | Next window in the focused group |
+| `SUPER + SHIFT + Tab` | Previous window in the focused group |
+| `SUPER + CTRL + Arrow` | Move the focused window into the neighboring window's group, creating a group if needed |
+
+`SUPER + P` replaces the previous pseudotiling shortcut. Unpinning leaves the window floating; use `SUPER + V` after unpinning to return it to tiling. Move floating windows with `SUPER + left mouse drag` and resize with `SUPER + right mouse drag`.
+
+To try tabs, open two terminals side by side, focus one, and press `SUPER + CTRL + Left` or `Right` toward the other. Both now share a tile. Click a title or use the Tab shortcuts to switch. `SUPER + G` dissolves the group. Single-window groups hide their tab bar; selected tabs use light gray with dark text.
+
+These controls use native Hyprland dispatchers and require no plugin. Group appearance is configured in `modules/decorations.lua`.
 
 ## Wallpaper Picker
 
