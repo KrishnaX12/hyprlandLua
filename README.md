@@ -9,17 +9,15 @@ A minimal, highly modular, **Lua-powered Hyprland setup** for Arch Linux. Featur
 
 ---
 
-> The screenshots below show the previous Gruvbox styling; the current defaults use the neutral palette.
-
 ## 📸 Showcase
 
-| 🌿 Clean Desktop | ⚡ Terminal & Fastfetch |
+| Clean Desktop | Terminals & Visualizer |
 | :---: | :---: |
-| ![Clean Desktop](https://github.com/user-attachments/assets/017943ef-4acd-41e3-aed0-8f850e38ecf3) | ![Fastfetch](https://github.com/user-attachments/assets/60e466de-c1fc-438e-b0fa-f6422e218699) |
+| ![Desktop with neutral gray Waybar](assets/screenshots/desktop.png) | ![Terminal layout with system information and audio visualizer](assets/screenshots/terminals.png) |
 
-| 🚀 App Launcher (Rofi) | 🔒 Lockscreen (Hyprlock) |
+| App Launcher (Rofi) | Lockscreen (Hyprlock) |
 | :---: | :---: |
-| ![Rofi Launcher](https://github.com/user-attachments/assets/23e7700d-0ca2-4a59-b5c9-b09237c23159) | ![Hyprlock](https://github.com/user-attachments/assets/a6ef470e-c394-4da2-bf61-685e8af15ea2) |
+| ![Rofi launcher with charcoal surfaces and readable white labels](assets/screenshots/launcher.png) | ![Charcoal lock screen with gray accents and just type it bro placeholder](assets/screenshots/lockscreen.png) |
 
 ---
 
