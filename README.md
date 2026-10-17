@@ -28,6 +28,7 @@ A minimal, highly modular, **Lua-powered Hyprland setup** for Arch Linux. Featur
 * **Neutral Theme:** Charcoal surfaces, soft white text, and gray accents across Rofi, Waybar, Hyprlock, and window borders.
 * **Cava Integration:** Audio visualizer with multiple custom GLSL shaders (Spectrogram, Northern Lights, Orion, Winamp-style) and color themes.
 * **Clipboard History:** Quick clipboard access using `cliphist` and Rofi (`SUPER + A`).
+* **Wallpaper Picker:** Browse cached wallpaper thumbnails with `SUPER + ALT + W`.
 * **Dynamic Wallpapers:** Switch between wallpapers using `ALT + 1-9`, or hit `ALT + 0` to select a random wallpaper!
 * **Power Menu:** Lock, suspend, log out, reboot, and shut down from Rofi (`SUPER + Escape`).
 * **Included Scripts:** Custom utilities for screenshots and Waybar reloading.
@@ -69,12 +70,14 @@ hyprlandLua/
     ├── kitty
     │   └── kitty.conf
     ├── rofi
+    │   ├── wallpaper-picker.rasi
     │   ├── power-menu.rasi
     │   ├── clipboard.rasi
     │   ├── colors/
     │   ├── scripts/
     │   │   ├── launcher.sh
-    │   │   └── power-menu.sh
+    │   │   ├── power-menu.sh
+    │   │   └── wallpaper-picker.py
     │   └── style.rasi
     ├── screenshot
     │   └── screenshot-script.sh
@@ -157,7 +160,7 @@ cd hyprlandLua
 
 **2. Make Scripts Executable**
 ```bash
-chmod +x .config/rofi/scripts/power-menu.sh .config/rofi/scripts/launcher.sh .config/screenshot/screenshot-script.sh .config/waybar/scripts/launch.sh
+chmod +x .config/rofi/scripts/wallpaper-picker.py .config/rofi/scripts/power-menu.sh .config/rofi/scripts/launcher.sh .config/screenshot/screenshot-script.sh .config/waybar/scripts/launch.sh
 ```
 
 **3. Back Up and Copy Configuration Files**
@@ -182,6 +185,14 @@ hyprctl reload
 Reloading does not rerun the `hyprland.start` handler.
 
 ---
+
+## Wallpaper Picker
+
+Install Python and ImageMagick (`sudo pacman -S python imagemagick`), plus `awww` for applying wallpapers. The existing autostart module starts `awww-daemon`.
+
+Press `SUPER + ALT + W`, select a thumbnail, and press Enter to apply it. Escape cancels. The picker scans `~/.config/wallpaper/`, including subdirectories, for PNG, JPEG, WebP, GIF, BMP, and AVIF files. Add images to this directory and reopen the picker to see them. Existing `ALT + 1–9` and `ALT + 0` shortcuts remain available.
+
+Thumbnails are cached under `${XDG_CACHE_HOME:-~/.cache}/wallpaper-picker/` and regenerated when an image changes. Delete this directory to clear the previews. Images that cannot be previewed still appear by filename. The first opening may take longer while previews are generated.
 
 ## Power Menu
 
