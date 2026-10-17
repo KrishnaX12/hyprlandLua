@@ -29,6 +29,7 @@ A minimal, highly modular, **Lua-powered Hyprland setup** for Arch Linux. Featur
 * **Cava Integration:** Audio visualizer with multiple custom GLSL shaders (Spectrogram, Northern Lights, Orion, Winamp-style) and color themes.
 * **Clipboard History:** Quick clipboard access using `cliphist` and Rofi (`SUPER + A`).
 * **Dynamic Wallpapers:** Switch between wallpapers using `ALT + 1-9`, or hit `ALT + 0` to select a random wallpaper!
+* **Power Menu:** Lock, suspend, log out, reboot, and shut down from Rofi (`SUPER + Escape`).
 * **Included Scripts:** Custom utilities for screenshots and Waybar reloading.
 
 ---
@@ -68,10 +69,12 @@ hyprlandLua/
     ├── kitty
     │   └── kitty.conf
     ├── rofi
+    │   ├── power-menu.rasi
     │   ├── clipboard.rasi
     │   ├── colors/
     │   ├── scripts/
-    │   │   └── launcher.sh
+    │   │   ├── launcher.sh
+    │   │   └── power-menu.sh
     │   └── style.rasi
     ├── screenshot
     │   └── screenshot-script.sh
@@ -154,7 +157,7 @@ cd hyprlandLua
 
 **2. Make Scripts Executable**
 ```bash
-chmod +x .config/rofi/scripts/launcher.sh .config/screenshot/screenshot-script.sh .config/waybar/scripts/launch.sh
+chmod +x .config/rofi/scripts/power-menu.sh .config/rofi/scripts/launcher.sh .config/screenshot/screenshot-script.sh .config/waybar/scripts/launch.sh
 ```
 
 **3. Back Up and Copy Configuration Files**
@@ -179,6 +182,12 @@ hyprctl reload
 Reloading does not rerun the `hyprland.start` handler.
 
 ---
+
+## Power Menu
+
+Press `SUPER + Escape` to open the power menu. Lock and suspend execute immediately. Log out, reboot, and shut down require a second confirmation, with Cancel selected by default. Escape closes either menu without taking action.
+
+The menu uses `hyprlock` and `systemctl`. Log out uses `hyprshutdown` when installed, otherwise Hyprland's native Lua exit dispatcher. The physical power button keeps its existing behavior.
 
 ## Theme
 
