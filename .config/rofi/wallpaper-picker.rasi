@@ -1,0 +1,58 @@
+@import "colors/neutral.rasi"
+
+* {
+    font: "JetBrainsMono Nerd Font 11";
+    background-color: transparent;
+    text-color: @foreground;
+}
+
+window {
+    width: 760px;
+    background-color: @background;
+    border: 1px;
+    border-color: @outline;
+    border-radius: 12px;
+}
+
+mainbox {
+    padding: 18px;
+    spacing: 14px;
+    children: [ inputbar, listview ];
+}
+
+inputbar {
+    padding: 12px;
+    spacing: 8px;
+    background-color: @background-alt;
+    border-radius: 8px;
+    children: [ prompt, entry ];
+}
+
+listview {
+    columns: 3;
+    lines: 3;
+    fixed-height: false;
+    spacing: 8px;
+    scrollbar: false;
+}
+
+element {
+    orientation: vertical;
+    padding: 10px;
+    spacing: 8px;
+    border-radius: 8px;
+}
+
+element selected {
+    background-color: @selected;
+}
+
+element-icon {
+    size: 180px;
+    horizontal-align: 0.5;
+}
+
+element-text {
+    text-color: inherit;
+    horizontal-align: 0.5;
+}

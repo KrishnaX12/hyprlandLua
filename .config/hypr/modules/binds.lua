@@ -74,3 +74,6 @@ for i = 1, 9 do
 end
 
 hl.bind("ALT + 0", hl.dsp.exec_cmd('awww img "$(find ~/.config/wallpaper -type f | shuf -n 1)"'))
+
+-- Wallpaper thumbnail picker
+hl.bind(mainMod .. " + ALT + W", hl.dsp.exec_cmd("~/.config/rofi/scripts/wallpaper-picker.py"))
