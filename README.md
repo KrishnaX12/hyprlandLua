@@ -28,7 +28,7 @@ A minimal, highly modular, **Lua-powered Hyprland setup** for Arch Linux. Featur
 * **Gruvbox Material:** Cohesive, relaxing theme applied across Waybar and Rofi.
 * **Cava Integration:** Audio visualizer with multiple custom GLSL shaders (Spectrogram, Northern Lights, Orion, Winamp-style) and color themes.
 * **Clipboard History:** Quick clipboard access using `cliphist` and Rofi (`SUPER + A`).
-* **Dynamic Wallpapers:** Switch between wallpapers using `ALT + 1-8`, or hit `ALT + 0` to select a random wallpaper!
+* **Dynamic Wallpapers:** Switch between wallpapers using `ALT + 1-9`, or hit `ALT + 0` to select a random wallpaper!
 * **Included Scripts:** Custom utilities for screenshots and Waybar reloading.
 
 ---
@@ -37,6 +37,7 @@ A minimal, highly modular, **Lua-powered Hyprland setup** for Arch Linux. Featur
 
 ```text
 hyprlandLua/
+├── LICENSE
 ├── README.md
 └── .config
     ├── cava
@@ -106,18 +107,40 @@ hyprlandLua/
 
 ## 📦 Dependencies
 
+### Hyprland Compatibility
+
+This configuration requires Hyprland's native Lua configuration support and the `hl` API. See the [Hyprland 0.55.0 configuration guide](https://wiki.hypr.land/0.55.0/Configuring/Start/) for the Lua configuration format. Installing standalone Lua does not add Lua configuration support to older Hyprland builds.
+
+Check your installed version with `hyprctl version`. A specific tested Hyprland version is not recorded in this repository; the Lua API may differ between releases.
+
 ### Core (Required)
 ```bash
-sudo pacman -S hyprland lua hyprlock waybar rofi-wayland kitty wl-clipboard cliphist
+sudo pacman -S hyprland hyprlock waybar rofi kitty wl-clipboard cliphist swaync
 ```
-*(Note: Ensure you install `rofi-wayland`, not the standard X11 `rofi`!)*
+Current Arch Linux `rofi` packages include native Wayland support. Older distributions may still package it separately as `rofi-wayland`.
 
 ### Optional (Used in this Setup)
 ```bash
 # Audio, brightness, screenshots, visualizer, and notifications
-sudo pacman -S cava brightnessctl pamixer playerctl grim slurp pavucontrol swaync
+sudo pacman -S cava brightnessctl wireplumber playerctl grim slurp pavucontrol libnotify
 ```
-*(Note: You will also need `awww` installed to use the wallpaper switching scripts).*
+`wireplumber` provides `wpctl` for the volume and microphone bindings and requires a working PipeWire audio session. `libnotify` provides optional screenshot notifications. Install `awww` separately for wallpaper switching; autostart launches `awww-daemon`.
+
+### Personal Application Shortcuts
+
+These applications are optional. Install them or change the corresponding commands in `hyprland.lua` and `modules/binds.lua`:
+
+| Shortcut | Command | Application / Arch package |
+| :--- | :--- | :--- |
+| `SUPER + E` | `nautilus` | Files (`nautilus`) |
+| `SUPER + F` | `firefox` | Firefox (`firefox`) |
+| `SUPER + W` | `kitty -e nmtui` | NetworkManager TUI (`networkmanager`) |
+| `SUPER + B` | `blueman-manager` | Bluetooth manager (`blueman`) |
+| `SUPER + I` | `idea` | IntelliJ IDEA; ensure its launcher is on `PATH` |
+
+### Fonts
+
+The themes reference Iosevka Nerd Font (including the Propo variant), JetBrainsMono Nerd Font, and FiraCode Nerd Font. Install these fonts or update the font settings in Waybar, Rofi, Kitty, and Hyprlock to match your installed fonts.
 
 ---
 
@@ -134,15 +157,26 @@ cd hyprlandLua
 chmod +x .config/rofi/scripts/launcher.sh .config/screenshot/screenshot-script.sh .config/waybar/scripts/launch.sh
 ```
 
-**3. Copy Configuration Files**
+**3. Back Up and Copy Configuration Files**
+
+Back up any existing `~/.config/{cava,hypr,kitty,rofi,screenshot,wallpaper,waybar}` directories before continuing. The copy command below merges directories and overwrites matching files.
+
 ```bash
+mkdir -p ~/.config
 cp -r .config/* ~/.config/
 ```
 
-**4. Reload Hyprland**
+**4. Start the Session**
+
+Review `hyprland.lua` and `modules/monitors.lua` for your applications and displays. Log out and start a new Hyprland session after the first installation so the `hyprland.start` handler launches Waybar, SwayNC, the wallpaper daemon, and clipboard history.
+
+For later configuration edits, reload without restarting the session:
+
 ```bash
 hyprctl reload
 ```
+
+Reloading does not rerun the `hyprland.start` handler.
 
 ---
 
@@ -152,3 +186,7 @@ hyprctl reload
 
 * Built and tested heavily on Arch Linux.
 * Feel free to fork, modify, and improve. If you add cool new Lua modules, pull requests are welcome!
+
+## License
+
+The configuration and scripts are available under the [MIT License](LICENSE). Bundled wallpapers and third-party shaders retain their original authors’ rights and licenses.
