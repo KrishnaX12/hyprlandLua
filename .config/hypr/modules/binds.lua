@@ -15,7 +15,11 @@ hl.bind(mainMod .. " + SPACE", hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + Escape", hl.dsp.exec_cmd("~/.config/rofi/scripts/power-menu.sh"))
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd("~/.config/waybar/scripts/launch.sh"))
-hl.bind(mainMod .. " + P", hl.dsp.window.pseudo()) 
+-- Keep a floating window visible across workspaces
+hl.bind(mainMod .. " + P", function()
+    hl.dispatch(hl.dsp.window.float({ action = "enable" }))
+    hl.dispatch(hl.dsp.window.pin({ action = "toggle" }))
+end)
 hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("kitty -e nmtui"))
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("blueman-manager"))
 hl.bind(mainMod .. " + I", hl.dsp.exec_cmd("idea"))
@@ -77,3 +81,13 @@ hl.bind("ALT + 0", hl.dsp.exec_cmd('awww img "$(find ~/.config/wallpaper -type f
 
 -- Wallpaper thumbnail picker
 hl.bind(mainMod .. " + ALT + W", hl.dsp.exec_cmd("~/.config/rofi/scripts/wallpaper-picker.py"))
+
+-- Tabbed window groups
+hl.bind(mainMod .. " + G", hl.dsp.group.toggle())
+hl.bind(mainMod .. " + Tab", hl.dsp.group.next())
+hl.bind(mainMod .. " + SHIFT + Tab", hl.dsp.group.prev())
+
+-- Move the focused window into a neighboring group, creating one if needed
+for _, direction in ipairs({ "left", "right", "up", "down" }) do
+    hl.bind(mainMod .. " + CTRL + " .. direction, hl.dsp.window.move({ into_or_create_group = direction }))
+end

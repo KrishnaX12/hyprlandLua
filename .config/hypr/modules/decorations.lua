@@ -78,3 +78,36 @@ hl.animation({ leaf = "workspaces",    enabled = true,  speed = 1.94, bezier = "
 hl.animation({ leaf = "workspacesIn",  enabled = true,  speed = 1.21, bezier = "almostLinear", style = "fade" })
 hl.animation({ leaf = "workspacesOut", enabled = true,  speed = 1.94, bezier = "almostLinear", style = "fade" })
 hl.animation({ leaf = "zoomFactor",    enabled = true,  speed = 7,    bezier = "quick" })
+
+-- Compact gray tabs for grouped windows
+hl.config({
+    group = {
+        col = {
+            border_active = "rgba(b8bec2ff)",
+            border_inactive = "rgba(454b4fff)",
+            border_locked_active = "rgba(b8bec2ff)",
+            border_locked_inactive = "rgba(454b4fff)",
+        },
+        groupbar = {
+            disable_when_only = true,
+            font_family = "JetBrainsMono Nerd Font",
+            font_size = 10,
+            height = 18,
+            indicator_height = 0,
+            indicator_gap = 0,
+            gaps_in = 2,
+            gaps_out = 0,
+            keep_upper_gap = false,
+            gradients = true,
+            render_titles = true,
+            text_color = "rgba(181a1bff)",
+            text_color_inactive = "rgba(b0b5b8ff)",
+            col = {
+                active = "rgba(b8bec2ff)",
+                inactive = "rgba(181a1bff)",
+                locked_active = "rgba(b8bec2ff)",
+                locked_inactive = "rgba(181a1bff)",
+            },
+        },
+    },
+})
