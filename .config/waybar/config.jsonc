@@ -74,8 +74,8 @@
         "tooltip-format": "{capacity}% • {timeTo}\nBattery health: {health}%",
         "format-time": "{H}h {m}m",
         "events": {
-            "on-discharging-warning": "notify-send -a Waybar -u normal 'Low battery' 'Battery is at 20% or below. Connect your charger.'",
-            "on-discharging-critical": "notify-send -a Waybar -u critical 'Critical battery' 'Battery is at 10% or below. Connect your charger.'"
+    "on-discharging-warning": "notify-send -a Waybar -u normal 'Low battery' 'Battery is at 30% or below. Connect your charger.'",
+    "on-discharging-critical": "notify-send -a Waybar -u critical 'Critical battery' 'Battery is at 15% or below. Connect your charger.'"
         }
     },
     "pulseaudio": {
