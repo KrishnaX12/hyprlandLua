@@ -22,7 +22,7 @@ hl.bind(mainMod .. " + P", function()
 end)
 hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("kitty -e nmtui"))
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("blueman-manager"))
-hl.bind(mainMod .. " + I", hl.dsp.exec_cmd("idea"))
+hl.bind(mainMod .. " + I", hl.dsp.exec_cmd("~/.config/rofi/scripts/shortcuts.sh"))
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))    -- dwindle only
 hl.bind("Print", hl.dsp.exec_cmd("~/.config/screenshot/screenshot-script.sh"))
 hl.bind(mainMod .. " + Print", hl.dsp.exec_cmd("~/.config/screenshot/screenshot-script.sh area"))
