@@ -58,3 +58,10 @@ window#waybar {
     font-size: 0.7rem;
     letter-spacing: 1px;
  }
+#battery.warning.discharging {
+    color: @yellow;
+}
+
+#battery.critical.discharging {
+    color: @red;
+}
