@@ -40,8 +40,8 @@
         "bat": "BAT0",
         "interval": 30,
         "states": {
-            "warning": 20,
-            "critical": 10
+            "warning": 30,
+            "critical": 15
         },
         "format": "{capacity}% {icon}",
         "format-icons": {
