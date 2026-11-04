@@ -28,6 +28,7 @@ A minimal, highly modular, **Lua-powered Hyprland setup** for Arch Linux. Featur
 * **Modular Structure:** Clean, separated configuration modules that are easy to read and maintain.
 * **Neutral Theme:** Charcoal surfaces, soft white text, and gray accents across Rofi, Waybar, Hyprlock, and window borders.
 * **Cava Integration:** Audio visualizer with multiple custom GLSL shaders (Spectrogram, Northern Lights, Orion, Winamp-style) and color themes.
+* **Shortcut Cheatsheet:** Search keyboard and mouse shortcuts in Rofi (`SUPER + I`).
 * **Clipboard History:** Quick clipboard access using `cliphist` and Rofi (`SUPER + A`).
 * **Wallpaper Picker:** Browse cached wallpaper thumbnails with `SUPER + ALT + W`.
 * **Dynamic Wallpapers:** Switch between wallpapers using `ALT + 1-9`, or hit `ALT + 0` to select a random wallpaper!
@@ -78,6 +79,7 @@ hyprlandLua/
     │   ├── scripts/
     │   │   ├── launcher.sh
     │   │   ├── power-menu.sh
+    │   │   ├── shortcuts.sh
     │   │   └── wallpaper-picker.py
     │   └── style.rasi
     ├── screenshot
@@ -143,7 +145,6 @@ These applications are optional. Install them or change the corresponding comman
 | `SUPER + F` | `firefox` | Firefox (`firefox`) |
 | `SUPER + W` | `kitty -e nmtui` | NetworkManager TUI (`networkmanager`) |
 | `SUPER + B` | `blueman-manager` | Bluetooth manager (`blueman`) |
-| `SUPER + I` | `idea` | IntelliJ IDEA; ensure its launcher is on `PATH` |
 
 ### Fonts
 
@@ -161,7 +162,7 @@ cd hyprlandLua
 
 **2. Make Scripts Executable**
 ```bash
-chmod +x .config/rofi/scripts/wallpaper-picker.py .config/rofi/scripts/power-menu.sh .config/rofi/scripts/launcher.sh .config/screenshot/screenshot-script.sh .config/waybar/scripts/launch.sh
+chmod +x .config/rofi/scripts/shortcuts.sh .config/rofi/scripts/wallpaper-picker.py .config/rofi/scripts/power-menu.sh .config/rofi/scripts/launcher.sh .config/screenshot/screenshot-script.sh .config/waybar/scripts/launch.sh
 ```
 
 **3. Back Up and Copy Configuration Files**
@@ -211,6 +212,12 @@ Install Python and ImageMagick (`sudo pacman -S python imagemagick`), plus `awww
 Press `SUPER + ALT + W`, select a thumbnail, and press Enter to apply it. Escape cancels. The picker scans `~/.config/wallpaper/`, including subdirectories, for PNG, JPEG, WebP, GIF, BMP, and AVIF files. Add images to this directory and reopen the picker to see them. Existing `ALT + 1–9` and `ALT + 0` shortcuts remain available.
 
 Thumbnails are cached under `${XDG_CACHE_HOME:-~/.cache}/wallpaper-picker/` and regenerated when an image changes. Delete this directory to clear the previews. Images that cannot be previewed still appear by filename. The first opening may take longer while previews are generated.
+
+## Shortcut Cheatsheet
+
+Press `SUPER + I` to open the searchable Rofi cheatsheet. Type a key or action to filter the list; Escape closes it. Selecting an entry closes the menu without running the shortcut. This replaces the IntelliJ IDEA binding; launch IDEA from the application launcher instead.
+
+The list lives in `.config/rofi/scripts/shortcuts.sh` and uses the existing clipboard theme. Update the list when changing shortcuts in `modules/binds.lua`.
 
 ## Power Menu
 
