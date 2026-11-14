@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+import argparse
+import random
 import hashlib
 import os
 from pathlib import Path
@@ -7,6 +9,11 @@ import subprocess
 
 
 def main():
+    parser = argparse.ArgumentParser()
+    mode = parser.add_mutually_exclusive_group()
+    mode.add_argument('--random', action='store_true')
+    mode.add_argument('--number', type=int, choices=range(1, 10))
+    args = parser.parse_args()
     wallpaper_dir = Path.home() / '.config/wallpaper'
     cache_dir = Path(os.environ.get('XDG_CACHE_HOME', Path.home() / '.cache')) / 'wallpaper-picker'
     cache_dir.mkdir(parents=True, exist_ok=True)
@@ -17,6 +24,17 @@ def main():
     )
     if not wallpapers:
         subprocess.run(['rofi', '-e', f'No wallpapers found in {wallpaper_dir}'], check=False)
+        return
+
+    if args.number is not None:
+        wallpaper = wallpaper_dir / f'pic{args.number}.png'
+        if wallpaper not in wallpapers:
+            subprocess.run(['rofi', '-e', f'Wallpaper not found: {wallpaper}'], check=False)
+            return
+        subprocess.run(['awww', 'img', str(wallpaper)], check=True)
+        return
+    if args.random:
+        subprocess.run(['awww', 'img', str(random.choice(wallpapers))], check=True)
         return
 
     entries = []

@@ -6,4 +6,4 @@ theme='style'
 ## Run
 pkill rofi || rofi \
     -show drun \
-    -theme ${dir}/${theme}.rasi
+    -theme "${dir}/${theme}.rasi"
