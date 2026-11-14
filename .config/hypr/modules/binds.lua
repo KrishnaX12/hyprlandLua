@@ -8,7 +8,7 @@ local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 -- Example binds, see https://wiki.hypr.land/Configuring/Basics/Binds/ for more
 hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd(terminal))
 hl.bind(mainMod .. " + C", hl.dsp.window.close())
-hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch exit"))
+hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("if command -v hyprshutdown >/dev/null 2>&1; then hyprshutdown; else hyprctl eval 'hl.dispatch(hl.dsp.exit())'; fi"))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + F", hl.dsp.exec_cmd("firefox"))
 hl.bind(mainMod .. " + SPACE", hl.dsp.exec_cmd(menu))
@@ -26,7 +26,7 @@ hl.bind(mainMod .. " + I", hl.dsp.exec_cmd("~/.config/rofi/scripts/shortcuts.sh"
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))    -- dwindle only
 hl.bind("Print", hl.dsp.exec_cmd("~/.config/screenshot/screenshot-script.sh"))
 hl.bind(mainMod .. " + Print", hl.dsp.exec_cmd("~/.config/screenshot/screenshot-script.sh area"))
-hl.bind(mainMod .. " + A", hl.dsp.exec_cmd("cliphist list | rofi -dmenu -i -p Clipboard -theme ~/.config/rofi/clipboard.rasi | cliphist decode | wl-copy"))
+hl.bind(mainMod .. " + A", hl.dsp.exec_cmd("~/.config/rofi/scripts/clipboard.sh"))
 hl.bind("SUPER + L", function()
     hl.exec_cmd("hyprlock")
 end)
@@ -74,10 +74,10 @@ hl.bind("XF86AudioPrev",  hl.dsp.exec_cmd("playerctl previous"),   { locked = tr
 --Wallpaper 
 
 for i = 1, 9 do
-    hl.bind("ALT + " .. i, hl.dsp.exec_cmd("awww img ~/.config/wallpaper/pic" .. i .. ".png"))
+    hl.bind("ALT + " .. i, hl.dsp.exec_cmd("~/.config/rofi/scripts/wallpaper-picker.py --number " .. i))
 end
 
-hl.bind("ALT + 0", hl.dsp.exec_cmd('awww img "$(find ~/.config/wallpaper -type f | shuf -n 1)"'))
+hl.bind("ALT + 0", hl.dsp.exec_cmd('~/.config/rofi/scripts/wallpaper-picker.py --random'))
 
 -- Wallpaper thumbnail picker
 hl.bind(mainMod .. " + ALT + W", hl.dsp.exec_cmd("~/.config/rofi/scripts/wallpaper-picker.py"))

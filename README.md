@@ -162,7 +162,7 @@ cd hyprlandLua
 
 **2. Make Scripts Executable**
 ```bash
-chmod +x .config/rofi/scripts/shortcuts.sh .config/rofi/scripts/wallpaper-picker.py .config/rofi/scripts/power-menu.sh .config/rofi/scripts/launcher.sh .config/screenshot/screenshot-script.sh .config/waybar/scripts/launch.sh
+chmod +x .config/rofi/scripts/clipboard.sh .config/rofi/scripts/shortcuts.sh .config/rofi/scripts/wallpaper-picker.py .config/rofi/scripts/power-menu.sh .config/rofi/scripts/launcher.sh .config/screenshot/screenshot-script.sh .config/waybar/scripts/launch.sh
 ```
 
 **3. Back Up and Copy Configuration Files**
@@ -211,7 +211,7 @@ Install Python and ImageMagick (`sudo pacman -S python imagemagick`), plus `awww
 
 Press `SUPER + ALT + W`, select a thumbnail, and press Enter to apply it. Escape cancels. The picker scans `~/.config/wallpaper/`, including subdirectories, for PNG, JPEG, WebP, GIF, BMP, and AVIF files. Add images to this directory and reopen the picker to see them. Existing `ALT + 1–9` and `ALT + 0` shortcuts remain available.
 
-Thumbnails are cached under `${XDG_CACHE_HOME:-~/.cache}/wallpaper-picker/` and regenerated when an image changes. Delete this directory to clear the previews. Images that cannot be previewed still appear by filename. The first opening may take longer while previews are generated.
+Thumbnails are cached under `${XDG_CACHE_HOME:-~/.cache}/wallpaper-picker/` and regenerated when an image changes. Delete this directory to clear the previews. Images that cannot be previewed still appear by filename. Random selection uses the same image filter; missing numbered wallpapers show an error instead of invoking `awww` with a nonexistent file. The first opening may take longer while previews are generated.
 
 ## Shortcut Cheatsheet
 
@@ -243,3 +243,9 @@ After copying the files, reopen Rofi, reload Waybar with `SUPER + R`, and run `h
 ## License
 
 The configuration and scripts are available under the [MIT License](LICENSE). Bundled wallpapers and third-party shaders retain their original authors’ rights and licenses.
+
+## Script behavior
+
+Clipboard selection leaves the clipboard untouched when cancelled or when decoding fails. Screenshot captures use `flock` (util-linux), unique filenames, and report clipboard failures separately from saving the image. Waybar restart requires the current Wayland session environment rather than guessing a display socket.
+
+At login, the session exports `WAYLAND_DISPLAY` and `XDG_CURRENT_DESKTOP` to D-Bus/systemd for portal activation. It does not restart portals on a fixed timer.
