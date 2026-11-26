@@ -249,3 +249,35 @@ The configuration and scripts are available under the [MIT License](LICENSE). Bu
 Clipboard selection leaves the clipboard untouched when cancelled or when decoding fails. Screenshot captures use `flock` (util-linux), unique filenames, and report clipboard failures separately from saving the image. Waybar restart requires the current Wayland session environment rather than guessing a display socket.
 
 At login, the session exports `WAYLAND_DISPLAY` and `XDG_CURRENT_DESKTOP` to D-Bus/systemd for portal activation. It does not restart portals on a fixed timer.
+
+## Waybar Audio Visualizer
+
+The audio visualizer requires Waybar built with Cava support. Installing the standalone `cava` executable does not enable the module. If Waybar reports `Unknown module: cava`, build it with `-Dcava=enabled` as shown below.
+
+Autostart and `SUPER + R` use `.config/waybar/scripts/launch.sh`. The launcher uses `~/.local/bin/waybar` when executable, otherwise it uses `waybar` from `PATH`.
+
+To install Waybar 0.16.0 and libcava 1.0.0 under `~/.local`, install Git, Meson, Ninja, a C/C++ compiler, and the development dependencies reported by Meson. Run these commands in a fresh build directory:
+
+```bash
+mkdir -p ~/.cache/waybar-cava-build
+cd ~/.cache/waybar-cava-build
+
+git clone --depth 1 --branch 1.0.0 https://github.com/LukashonakV/cava.git libcava
+meson setup libcava/build libcava \
+    --prefix="$HOME/.local" --libdir=lib \
+    -Dcava_font=false
+meson compile -C libcava/build -j 2
+meson install -C libcava/build
+
+git clone --depth 1 --branch 0.16.0 https://github.com/Alexays/Waybar.git waybar
+PKG_CONFIG_PATH="$HOME/.local/lib/pkgconfig${PKG_CONFIG_PATH:+:$PKG_CONFIG_PATH}" \
+    meson setup waybar/build waybar \
+    --prefix="$HOME/.local" --libdir=lib \
+    -Dcava=enabled -Dtests=disabled -Dman-pages=disabled \
+    -Dcpp_link_args="-Wl,-rpath,$HOME/.local/lib"
+meson compile -C waybar/build -j 2
+meson install -C waybar/build
+~/.config/waybar/scripts/launch.sh
+```
+
+The build uses `~/.local/lib` to load libcava. Rebuild libcava and Waybar after incompatible audio-library upgrades. To use the system Waybar again, move `~/.local/bin/waybar` out of that path and press `SUPER + R`.
