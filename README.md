@@ -249,3 +249,29 @@ The configuration and scripts are available under the [MIT License](LICENSE). Bu
 Clipboard selection leaves the clipboard untouched when cancelled or when decoding fails. Screenshot captures use `flock` (util-linux), unique filenames, and report clipboard failures separately from saving the image. Waybar restart requires the current Wayland session environment rather than guessing a display socket.
 
 At login, the session exports `WAYLAND_DISPLAY` and `XDG_CURRENT_DESKTOP` to D-Bus/systemd for portal activation. It does not restart portals on a fixed timer.
+
+## Restoring the Waybar visualizer
+
+The `cava` executable alone does not enable Waybar's Cava module. If Waybar logs `Unknown module: cava`, use a Waybar build with Cava support. A module-loading error mentioning a missing audio library also requires rebuilding `libcava` against the installed libraries.
+
+Both autostart and `SUPER + R` use the launcher, which prefers `~/.local/bin/waybar` and falls back to the system executable. To return to the system build, move the local executable out of that path.
+
+The following user-local build was verified with Waybar 0.16.0 and libcava 1.0.0 on Arch Linux. It needs Git, Meson, Ninja, a C/C++ compiler, and the development dependencies for both projects. Meson reports missing dependencies during setup. Use a fresh build directory and rebuild after incompatible system library upgrades.
+
+```bash
+mkdir -p ~/.cache/waybar-cava-build
+cd ~/.cache/waybar-cava-build
+
+git clone --depth 1 --branch 1.0.0 https://github.com/LukashonakV/cava.git libcava
+meson setup libcava/build libcava --prefix="$HOME/.local" --libdir=lib -Dcava_font=false
+meson compile -C libcava/build -j 2
+meson install -C libcava/build
+
+git clone --depth 1 --branch 0.16.0 https://github.com/Alexays/Waybar.git waybar
+PKG_CONFIG_PATH="$HOME/.local/lib/pkgconfig${PKG_CONFIG_PATH:+:$PKG_CONFIG_PATH}" meson setup waybar/build waybar --prefix="$HOME/.local" --libdir=lib     -Dcava=enabled -Dtests=disabled -Dman-pages=disabled     -Dcpp_link_args="-Wl,-rpath,$HOME/.local/lib"
+meson compile -C waybar/build -j 2
+meson install -C waybar/build
+~/.config/waybar/scripts/launch.sh
+```
+
+This leaves the system packages installed. The runtime library path lets the local Cava module find the rebuilt library without changing the whole session's library search path.
